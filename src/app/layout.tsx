@@ -1,5 +1,10 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+
+import { AppSidebar } from "../components/app-sidebar";
+import { ThemeProvider } from "../components/theme-provider";
+import { SidebarInset, SidebarProvider, SidebarTrigger } from "../components/ui/sidebar";
+
 import "./globals.css";
 
 const geistSans = Geist({
@@ -23,11 +28,30 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        suppressHydrationWarning
       >
-        {children}
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <SidebarProvider>
+            <AppSidebar
+              title="Andrew Holbrook | Mocafi Assessment"
+              subtitle="GoRest.co.in User CRUD App"
+            />
+            <SidebarInset>
+              <SidebarTrigger />
+              <div className="flex flex-col gap-4">
+                {children}
+              </div>
+            </SidebarInset>
+          </SidebarProvider>
+        </ThemeProvider>
       </body>
     </html>
   );
