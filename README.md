@@ -9,3 +9,4 @@ This is an assessment for building a CRUD web app.
 
 This is currently a shell of a NextJS project and I will pick a place to deploy this project.
 
+https://holzbrook-mocafi-assessment.netlify.app/
