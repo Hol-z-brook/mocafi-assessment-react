@@ -42,10 +42,9 @@ const data = {
 
 interface AppSidebarProps extends React.ComponentProps<typeof Sidebar> {
     title: string;
-    subtitle?: string;
 }
 
-export function AppSidebar({ title, subtitle, ...props }: AppSidebarProps) {
+export function AppSidebar({ title, ...props }: AppSidebarProps) {
   const pathname = usePathname();
   return (
     <Sidebar {...props}>

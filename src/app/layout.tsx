@@ -42,7 +42,6 @@ export default function RootLayout({
           <SidebarProvider>
             <AppSidebar
               title="Andrew Holbrook | Mocafi Assessment"
-              subtitle="GoRest.co.in User CRUD App"
             />
             <SidebarInset>
               <SidebarTrigger />
