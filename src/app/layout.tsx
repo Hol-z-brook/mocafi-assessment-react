@@ -11,7 +11,7 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from '../components/ui/breadcrumb'
-import { ThemeProvider } from '../components/theme-provider'
+import { ThemeProvider } from '../components/theme/theme-provider'
 import {
   SidebarInset,
   SidebarProvider,
