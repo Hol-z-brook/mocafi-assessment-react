@@ -5,8 +5,13 @@ Assessment for Mocafi
 
 This is an assessment for building a CRUD web app.
 
-### Step 1: Deployment
-
-This is currently a shell of a NextJS project and I will pick a place to deploy this project.
+### Deployment
 
 https://holzbrook-mocafi-assessment.netlify.app/
+
+### Tasks
+
+[ ] - Write a frontend web application enabling CRUD operations with users, using the Go REST online public API and user endpoints.
+[ ] - Implement Form validations
+[ ] - Add API integration
+[ ] - Login interface using hardcoded credentials
