@@ -11,7 +11,7 @@ https://holzbrook-mocafi-assessment.netlify.app/
 
 ### Tasks
 
-[ ] - Add sample data
+[x] - Add sample data
 [ ] - Write a frontend web application enabling CRUD operations with users, using the Go REST online public API and user endpoints.
     [ ] - / - home page, ignore for now
     [ ] - /user - display the current user
