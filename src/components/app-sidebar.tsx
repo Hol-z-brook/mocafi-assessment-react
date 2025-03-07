@@ -1,7 +1,7 @@
-'use client';
+'use client'
 
-import * as React from "react"
-import Link from "next/link"
+import * as React from 'react'
+import Link from 'next/link'
 
 import {
   Sidebar,
@@ -14,38 +14,37 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
   SidebarRail,
-} from "@/src/components/ui/sidebar"
-import { usePathname } from "next/navigation";
+} from '@/src/components/ui/sidebar'
+import { usePathname } from 'next/navigation'
 // This is sample data.
 const data = {
   navMain: [
     {
-      title: "User Management",
+      title: 'User Management',
       items: [
         {
-          title: "Current User",
-          url: "/user",
+          title: 'Current User',
+          url: '/user',
         },
         {
-          title: "All Users",
-          url: "/users",
+          title: 'All Users',
+          url: '/users',
         },
         {
-          title: "Create User",
-          url: "/users/create",
+          title: 'Create User',
+          url: '/users/create',
         },
-        
       ],
     },
   ],
 }
 
 interface AppSidebarProps extends React.ComponentProps<typeof Sidebar> {
-    title: string;
+  title: string
 }
 
 export function AppSidebar({ title, ...props }: AppSidebarProps) {
-  const pathname = usePathname();
+  const pathname = usePathname()
   return (
     <Sidebar {...props}>
       <SidebarHeader>

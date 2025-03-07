@@ -1,9 +1,9 @@
-import { fetchUser } from '../actions/user';
+import { fetchUser } from '../actions/user'
 
-const currentUserId = 7752435;
+const currentUserId = 7752435
 
 export default async function UsersPage() {
-  const user = await fetchUser(currentUserId); 
+  const user = await fetchUser(currentUserId)
 
   return (
     <div>
@@ -13,5 +13,5 @@ export default async function UsersPage() {
       <p>{user?.gender}</p>
       <p>{user?.status}</p>
     </div>
-  );
+  )
 }

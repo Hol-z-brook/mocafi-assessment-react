@@ -1,8 +1,8 @@
-import { type User } from '../actions/user';
-import { fetchUsers } from '../actions/users';
+import { type User } from '../actions/user'
+import { fetchUsers } from '../actions/users'
 
 export default async function UsersPage() {
-  const users: User[] = await fetchUsers(); 
+  const users: User[] = await fetchUsers()
 
   return (
     <div>
@@ -15,5 +15,5 @@ export default async function UsersPage() {
         ))}
       </ul>
     </div>
-  );
+  )
 }

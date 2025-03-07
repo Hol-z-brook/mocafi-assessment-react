@@ -1,4 +1,5 @@
 # mocafi-assessment-react
+
 Assessment for Mocafi
 
 ## Mocafi Assessment
@@ -13,11 +14,11 @@ https://holzbrook-mocafi-assessment.netlify.app/
 
 [x] - Add sample data
 [ ] - Write a frontend web application enabling CRUD operations with users, using the Go REST online public API and user endpoints.
-    [x] - / - home page, ignore for now
-    [ ] - /account - display the current user
-    [ ] - /users - display a list of users
-    [ ] - /users/[id] - display a specific user
-    [ ] - /users/[id]/delete - a separate page to delete the user
+[x] - / - home page, ignore for now
+[ ] - /account - display the current user
+[ ] - /users - display a list of users
+[ ] - /users/[id] - display a specific user
+[ ] - /users/[id]/delete - a separate page to delete the user
 [ ] - Implement Form validations
 [ ] - Add API integration
 [ ] - Login interface using hardcoded credentials

@@ -1,10 +1,10 @@
-import { type User } from '../../actions/user';
-import { fetchUser } from '../../actions/user';
+import { type User } from '../../actions/user'
+import { fetchUser } from '../../actions/user'
 
-const sampleUserId = 7752433;
+const sampleUserId = 7752433
 
 export default async function UserPage() {
-  const user: User | undefined = await fetchUser(sampleUserId); 
+  const user: User | undefined = await fetchUser(sampleUserId)
 
   return (
     <div>
@@ -14,5 +14,5 @@ export default async function UserPage() {
       <p>{user?.gender}</p>
       <p>{user?.status}</p>
     </div>
-  );
+  )
 }
