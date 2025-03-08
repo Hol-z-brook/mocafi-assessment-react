@@ -11,7 +11,15 @@ import { GenderField } from '@/src/components/form/fields/gender-field'
 import { AuthButton } from '@/src/components/ui/auth/auth-button'
 import { toast } from 'sonner'
 import { useRouter } from 'next/navigation'
-import { DEMO_USERS } from '@/src/utils/auth'
+import { Button } from '@/src/components/ui/button'
+import { ArrowLeft, Shuffle } from 'lucide-react'
+import Link from 'next/link'
+import {
+  createUserSchema,
+  type CreateUserSchema,
+} from '@/src/data/model/user/User.schema'
+import { createUser } from '@/src/app/actions/users/createUser'
+import { generateRandomUser } from '@/src/utils/demo-data'
 import {
   Card,
   CardContent,
@@ -19,13 +27,6 @@ import {
   CardHeader,
   CardTitle,
 } from '@/src/components/ui/card'
-import { Button } from '@/src/components/ui/button'
-import { ArrowLeft } from 'lucide-react'
-import Link from 'next/link'
-import {
-  createUserSchema,
-  type CreateUserSchema,
-} from '@/src/data/model/user/User.schema'
 
 export default function CreateUserPage() {
   const router = useRouter()
@@ -39,20 +40,27 @@ export default function CreateUserPage() {
     mode: 'onChange',
   })
 
-  const fillAndSubmitDemoUser = () => {
-    Object.entries(DEMO_USERS.create).forEach(([key, value]) => {
-      form.setValue(key as keyof CreateUserSchema, value)
+  const fillRandomUser = () => {
+    const randomUser = generateRandomUser()
+    Object.entries(randomUser).forEach(([key, value]) => {
+      form.setValue(key as keyof CreateUserSchema, value, {
+        shouldValidate: true,
+      })
     })
-    setTimeout(() => {
-      form.handleSubmit(() => {
-        toast.success('User created successfully!', {
-          description: 'This is just a prototype.',
-        })
-        setTimeout(() => {
-          router.push('/dashboard/users')
-        }, 2000)
-      })()
-    }, 100)
+  }
+
+  const handleSubmit = async (data: CreateUserSchema) => {
+    try {
+      await createUser(data)
+      toast.success('User created successfully!')
+      router.refresh()
+      router.push('/dashboard/users')
+    } catch (error) {
+      toast.error('Failed to create user', {
+        description:
+          error instanceof Error ? error.message : 'Unknown error occurred',
+      })
+    }
   }
 
   return (
@@ -79,14 +87,7 @@ export default function CreateUserPage() {
           <CardContent>
             <Form {...form}>
               <form
-                onSubmit={form.handleSubmit(() => {
-                  toast.success('User created successfully!', {
-                    description: 'This is just a prototype.',
-                  })
-                  setTimeout(() => {
-                    router.push('/dashboard/users')
-                  }, 2000)
-                })}
+                onSubmit={form.handleSubmit(handleSubmit)}
                 className="space-y-4 lg:space-y-6"
               >
                 <NameField control={form.control} />
@@ -97,13 +98,15 @@ export default function CreateUserPage() {
                   <AuthButton type="submit" disabled={!form.formState.isValid}>
                     Create User
                   </AuthButton>
-                  <AuthButton
+                  <Button
                     type="button"
                     variant="outline"
-                    onClick={fillAndSubmitDemoUser}
+                    className="w-full"
+                    onClick={fillRandomUser}
                   >
-                    Demo User
-                  </AuthButton>
+                    <Shuffle className="h-4 w-4 mr-2" />
+                    Fill Random Data
+                  </Button>
                 </div>
               </form>
             </Form>

@@ -17,16 +17,26 @@ import { BreadcrumbPage } from '@/src/components/ui/breadcrumb'
 import Link from 'next/link'
 import { Button } from '@/src/components/ui/button'
 import { Plus, ArrowLeft } from 'lucide-react'
+import { useRouter, usePathname, useSearchParams } from 'next/navigation'
 
 export default function UsersPage() {
   const [users, setUsers] = useState<User[]>([])
+  const router = useRouter()
+  const pathname = usePathname()
+  const searchParams = useSearchParams()
 
-  useEffect(() => {
-    getUsers({
+  const fetchUsers = async () => {
+    const data = await getUsers({
       page: 1,
       perPage: 10,
-    }).then(setUsers)
-  }, [])
+    })
+    setUsers(data)
+  }
+
+  // Fetch users when the component mounts or when the URL changes
+  useEffect(() => {
+    fetchUsers()
+  }, [pathname, searchParams])
 
   return (
     <>

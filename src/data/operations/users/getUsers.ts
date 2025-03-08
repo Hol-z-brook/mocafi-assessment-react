@@ -1,33 +1,40 @@
-import { goRestApi, apiConfig } from '@/src/data'
 import { type User } from '../../model/user'
-import { getUsersSample } from '../../model/user/users.sample'
+import { store } from '../../store'
 
-export interface GetUsersProps {
+interface GetUsersProps {
   page?: number
   perPage?: number
   search?: string
-  status?: 'active' | 'inactive'
 }
 
-export async function getUsers(props: GetUsersProps = {}): Promise<User[]> {
-  return getUsersSample(props)
-}
+export async function getUsers({
+  page = 1,
+  perPage = 10,
+  search,
+}: GetUsersProps = {}): Promise<User[]> {
+  console.log('\n[Operation] Getting users with:', { page, perPage, search })
+  let users = store.getUsers()
 
-export async function _getUsers(props: GetUsersProps = {}): Promise<User[]> {
-  const queryParams = new URLSearchParams()
-  if (props.page) queryParams.set('page', props.page.toString())
-  if (props.perPage) queryParams.set('per_page', props.perPage.toString())
-  if (props.search) queryParams.set('search', props.search)
-  if (props.status) queryParams.set('status', props.status)
-
-  const res = await goRestApi.get(
-    apiConfig,
-    `/public/v2/users?${queryParams.toString()}`
-  )
-
-  if (!res.ok) {
-    throw new Error('Failed to get users')
+  // Apply search filter if provided
+  if (search) {
+    const searchLower = search.toLowerCase()
+    users = users.filter(
+      (user) =>
+        user.name.toLowerCase().includes(searchLower) ||
+        user.email.toLowerCase().includes(searchLower)
+    )
+    console.log('[Operation] After search filter:', users.length, 'users found')
   }
 
-  return res.json()
+  // Apply pagination
+  const start = (page - 1) * perPage
+  const end = start + perPage
+  const paginatedUsers = users.slice(start, end)
+  console.log(
+    '[Operation] After pagination:',
+    paginatedUsers.length,
+    'users returned'
+  )
+
+  return paginatedUsers
 }
