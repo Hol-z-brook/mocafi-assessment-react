@@ -16,7 +16,7 @@ import DashboardBreadcrumbs from '../breadcrumbs'
 import { BreadcrumbItem, BreadcrumbPage } from '@/src/components/ui/breadcrumb'
 import Link from 'next/link'
 import { Button } from '@/src/components/ui/button'
-import { ArrowLeft } from 'lucide-react'
+import { Plus } from 'lucide-react'
 
 export default function UsersPage() {
   const [users, setUsers] = useState<User[]>([])
@@ -31,23 +31,17 @@ export default function UsersPage() {
   return (
     <>
       <DashboardBreadcrumbs>
-        <BreadcrumbItem>
-          <BreadcrumbPage>Users</BreadcrumbPage>
-        </BreadcrumbItem>
+        <BreadcrumbPage>Users</BreadcrumbPage>
       </DashboardBreadcrumbs>
-
       <div className="p-6">
-        <div className="flex items-center gap-4 mb-6">
-          <Button asChild variant="outline" size="icon">
-            <Link href="/dashboard">
-              <ArrowLeft className="h-4 w-4" />
-              <span className="sr-only">Go back</span>
+        <div className="flex items-center justify-between mb-6">
+          <h1 className="text-2xl font-semibold">Users</h1>
+          <Button asChild>
+            <Link href="/dashboard/users/new">
+              <Plus className="h-4 w-4 mr-2" />
+              Create User
             </Link>
           </Button>
-          <div className="flex items-center justify-between flex-1">
-            <h1 className="text-2xl font-semibold">Users</h1>
-            <Badge variant="secondary">{users.length} total</Badge>
-          </div>
         </div>
 
         <Table>

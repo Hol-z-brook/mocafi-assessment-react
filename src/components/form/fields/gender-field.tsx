@@ -12,19 +12,21 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/src/components/ui/select'
-import { Control } from 'react-hook-form'
+import { Control, FieldValues, Path } from 'react-hook-form'
 
-interface GenderFieldProps {
-  control: Control<any>
-  name?: string
+interface GenderFieldProps<T extends FieldValues = Record<string, unknown>> {
+  control: Control<T>
+  name?: Path<T>
   label?: string
+  placeholder?: string
 }
 
-export function GenderField({
+export function GenderField<T extends FieldValues = Record<string, unknown>>({
   control,
-  name = 'gender',
+  name = 'gender' as Path<T>,
   label = 'Gender',
-}: GenderFieldProps) {
+  placeholder = 'Select your gender',
+}: GenderFieldProps<T>) {
   return (
     <FormField
       control={control}
@@ -35,7 +37,7 @@ export function GenderField({
           <Select onValueChange={field.onChange} defaultValue={field.value}>
             <FormControl>
               <SelectTrigger className="lg:h-12 lg:text-lg">
-                <SelectValue placeholder="Select your gender" />
+                <SelectValue placeholder={placeholder} />
               </SelectTrigger>
             </FormControl>
             <SelectContent>

@@ -6,21 +6,21 @@ import {
   FormMessage,
 } from '@/src/components/ui/form'
 import { Input } from '@/src/components/ui/input'
-import { Control } from 'react-hook-form'
+import { Control, FieldValues, Path } from 'react-hook-form'
 
-interface NameFieldProps {
-  control: Control<any>
-  name?: string
+interface NameFieldProps<T extends FieldValues = Record<string, unknown>> {
+  control: Control<T>
+  name?: Path<T>
   label?: string
   placeholder?: string
 }
 
-export function NameField({
+export function NameField<T extends FieldValues = Record<string, unknown>>({
   control,
-  name = 'name',
+  name = 'name' as Path<T>,
   label = 'Name',
   placeholder,
-}: NameFieldProps) {
+}: NameFieldProps<T>) {
   return (
     <FormField
       control={control}

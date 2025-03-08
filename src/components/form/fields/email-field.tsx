@@ -6,21 +6,21 @@ import {
   FormMessage,
 } from '@/src/components/ui/form'
 import { Input } from '@/src/components/ui/input'
-import { Control } from 'react-hook-form'
+import { Control, FieldValues, Path } from 'react-hook-form'
 
-interface EmailFieldProps {
-  control: Control<any>
-  name?: string
+interface EmailFieldProps<T extends FieldValues = Record<string, unknown>> {
+  control: Control<T>
+  name?: Path<T>
   label?: string
   placeholder?: string
 }
 
-export function EmailField({
+export function EmailField<T extends FieldValues = Record<string, unknown>>({
   control,
-  name = 'email',
+  name = 'email' as Path<T>,
   label = 'Email',
   placeholder,
-}: EmailFieldProps) {
+}: EmailFieldProps<T>) {
   return (
     <FormField
       control={control}

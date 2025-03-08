@@ -3,7 +3,6 @@
 import { Form } from '@/src/components/ui/form'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { z } from 'zod'
 import DashboardBreadcrumbs from '../../breadcrumbs'
 import { BreadcrumbItem } from '@/src/components/ui/breadcrumb'
 import { NameField } from '@/src/components/form/fields/name-field'
@@ -23,16 +22,10 @@ import {
 import { Button } from '@/src/components/ui/button'
 import { ArrowLeft } from 'lucide-react'
 import Link from 'next/link'
-
-const createUserSchema = z.object({
-  name: z.string().min(1, 'Name is required'),
-  gender: z.enum(['Male', 'Female', 'Rather not say'], {
-    required_error: 'Please select a gender',
-  }),
-  email: z.string().min(1, 'Email is required').email('Invalid email address'),
-})
-
-type CreateUserSchema = z.infer<typeof createUserSchema>
+import {
+  createUserSchema,
+  type CreateUserSchema,
+} from '@/src/data/model/user/User.schema'
 
 export default function CreateUserPage() {
   const router = useRouter()
@@ -51,7 +44,7 @@ export default function CreateUserPage() {
       form.setValue(key as keyof CreateUserSchema, value)
     })
     setTimeout(() => {
-      form.handleSubmit((_) => {
+      form.handleSubmit(() => {
         toast.success('User created successfully!', {
           description: 'This is just a prototype.',
         })
@@ -86,7 +79,7 @@ export default function CreateUserPage() {
           <CardContent>
             <Form {...form}>
               <form
-                onSubmit={form.handleSubmit((_) => {
+                onSubmit={form.handleSubmit(() => {
                   toast.success('User created successfully!', {
                     description: 'This is just a prototype.',
                   })

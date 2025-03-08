@@ -54,7 +54,11 @@ export default function ForgotPasswordPage() {
               </FormItem>
             )}
           />
-          <Button type="submit" className="w-full lg:h-12 lg:text-lg mt-6">
+          <Button
+            type="submit"
+            className="w-full lg:h-12 lg:text-lg mt-6"
+            disabled={!form.formState.isValid}
+          >
             Reset Password
           </Button>
           <Link

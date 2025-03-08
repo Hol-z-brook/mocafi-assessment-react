@@ -27,7 +27,8 @@ export function TextFormField({
               type={type}
               placeholder={placeholder || label}
               className="lg:h-12 lg:text-lg"
-              {...field}
+              value={field.value as string}
+              onChange={field.onChange}
             />
           </FormControl>
           <FormMessage />

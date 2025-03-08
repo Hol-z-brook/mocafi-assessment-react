@@ -6,21 +6,21 @@ import {
   FormMessage,
 } from '@/src/components/ui/form'
 import { Input } from '@/src/components/ui/input'
-import { Control } from 'react-hook-form'
+import { Control, FieldValues, Path } from 'react-hook-form'
 
-interface PasswordFieldProps {
-  control: Control<any>
-  name?: string
+interface PasswordFieldProps<T extends FieldValues = Record<string, unknown>> {
+  control: Control<T>
+  name?: Path<T>
   label?: string
   placeholder?: string
 }
 
-export function PasswordField({
+export function PasswordField<T extends FieldValues = Record<string, unknown>>({
   control,
-  name = 'password',
+  name = 'password' as Path<T>,
   label = 'Password',
   placeholder,
-}: PasswordFieldProps) {
+}: PasswordFieldProps<T>) {
   return (
     <FormField
       control={control}

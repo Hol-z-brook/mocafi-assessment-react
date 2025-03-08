@@ -32,7 +32,10 @@ export function SelectFormField({
       render={({ field }) => (
         <FormItem>
           <FormLabel className="lg:text-lg">{label}</FormLabel>
-          <Select onValueChange={field.onChange} defaultValue={field.value}>
+          <Select
+            onValueChange={field.onChange}
+            defaultValue={field.value as string}
+          >
             <FormControl>
               <SelectTrigger className="lg:h-12 lg:text-lg">
                 <SelectValue
