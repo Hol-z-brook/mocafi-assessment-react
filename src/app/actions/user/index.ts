@@ -1,1 +1,6 @@
-export * from './user'
+export { type User } from '../../../data/model/user/User.model'
+export { getActiveUser } from './getActiveUser'
+export { getUserById } from './getUserById'
+export { login } from './login'
+export { logout } from './logout'
+export { signup } from './signup'
