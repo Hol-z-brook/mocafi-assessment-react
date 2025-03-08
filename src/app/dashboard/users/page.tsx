@@ -13,10 +13,10 @@ import { getUsers } from '@/src/app/actions/users'
 import { useEffect, useState } from 'react'
 import { User } from '@/src/data/model/user/User.model'
 import DashboardBreadcrumbs from '../breadcrumbs'
-import { BreadcrumbItem, BreadcrumbPage } from '@/src/components/ui/breadcrumb'
+import { BreadcrumbPage } from '@/src/components/ui/breadcrumb'
 import Link from 'next/link'
 import { Button } from '@/src/components/ui/button'
-import { Plus } from 'lucide-react'
+import { Plus, ArrowLeft } from 'lucide-react'
 
 export default function UsersPage() {
   const [users, setUsers] = useState<User[]>([])
@@ -34,14 +34,22 @@ export default function UsersPage() {
         <BreadcrumbPage>Users</BreadcrumbPage>
       </DashboardBreadcrumbs>
       <div className="p-6">
-        <div className="flex items-center justify-between mb-6">
-          <h1 className="text-2xl font-semibold">Users</h1>
-          <Button asChild>
-            <Link href="/dashboard/users/new">
-              <Plus className="h-4 w-4 mr-2" />
-              Create User
+        <div className="flex items-center gap-4 mb-6">
+          <Button asChild variant="outline" size="icon">
+            <Link href="/dashboard">
+              <ArrowLeft className="h-4 w-4" />
+              <span className="sr-only">Go back</span>
             </Link>
           </Button>
+          <div className="flex items-center justify-between flex-1">
+            <h1 className="text-2xl font-semibold">Users</h1>
+            <Button asChild>
+              <Link href="/dashboard/users/new">
+                <Plus className="h-4 w-4 mr-2" />
+                Create User
+              </Link>
+            </Button>
+          </div>
         </div>
 
         <Table>

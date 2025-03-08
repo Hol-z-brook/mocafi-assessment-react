@@ -7,7 +7,6 @@ import {
   CardTitle,
 } from '@/src/components/ui/card'
 import { Avatar, AvatarFallback } from '@/src/components/ui/avatar'
-
 import { type User, getUserById } from '../../../actions/user'
 import DashboardBreadcrumbs from '../../breadcrumbs'
 import { Skeleton } from '@/src/components/ui/skeleton'
