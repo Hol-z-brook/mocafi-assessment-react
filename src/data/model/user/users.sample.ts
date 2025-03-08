@@ -84,5 +84,13 @@ export const getUsersSample = async (
     },
   ]
 
-  return users.slice((page - 1) * perPage, page * perPage)
+  const filteredUsers = search
+    ? users.filter(
+        (user) =>
+          user.name.toLowerCase().includes(search.toLowerCase()) ||
+          user.email.toLowerCase().includes(search.toLowerCase())
+      )
+    : users
+
+  return filteredUsers.slice((page - 1) * perPage, page * perPage)
 }

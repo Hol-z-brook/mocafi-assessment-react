@@ -12,7 +12,11 @@ export const goRestApi = {
 
     return res.json()
   },
-  post: async (config: ApiConfig, path: string, body: any) => {
+  post: async <T extends Record<string, unknown>>(
+    config: ApiConfig,
+    path: string,
+    body: T
+  ) => {
     const res = await fetch(`${config.origin}${path}`, {
       method: 'POST',
       headers: config.headers,
@@ -25,7 +29,11 @@ export const goRestApi = {
 
     return res.json()
   },
-  put: async (config: ApiConfig, path: string, body: any) => {
+  put: async <T extends Record<string, unknown>>(
+    config: ApiConfig,
+    path: string,
+    body: T
+  ) => {
     const res = await fetch(`${config.origin}${path}`, {
       method: 'PUT',
       headers: config.headers,

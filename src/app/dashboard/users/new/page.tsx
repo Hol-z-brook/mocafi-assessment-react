@@ -51,7 +51,7 @@ export default function CreateUserPage() {
       form.setValue(key as keyof CreateUserSchema, value)
     })
     setTimeout(() => {
-      form.handleSubmit((data) => {
+      form.handleSubmit((_) => {
         toast.success('User created successfully!', {
           description: 'This is just a prototype.',
         })
@@ -86,7 +86,7 @@ export default function CreateUserPage() {
           <CardContent>
             <Form {...form}>
               <form
-                onSubmit={form.handleSubmit((data) => {
+                onSubmit={form.handleSubmit((_) => {
                   toast.success('User created successfully!', {
                     description: 'This is just a prototype.',
                   })

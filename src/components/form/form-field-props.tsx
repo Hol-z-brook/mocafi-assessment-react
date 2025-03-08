@@ -1,7 +1,9 @@
-import { Control } from 'react-hook-form'
+import { Control, FieldValues } from 'react-hook-form'
 
-export interface FormFieldProps {
-  control: Control<any>
+export interface FormFieldProps<
+  T extends FieldValues = Record<string, unknown>,
+> {
+  control: Control<T>
   name: string
   label: string
   placeholder?: string
