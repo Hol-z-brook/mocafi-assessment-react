@@ -3,6 +3,7 @@
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { Users, UserPlus, Home } from 'lucide-react'
+import { ThemeModeToggle } from '@/src/components/theme/theme-mode-toggle'
 
 import {
   Sidebar,
@@ -93,6 +94,9 @@ export default function DashboardSidebar() {
         </SidebarContent>
       </div>
       <SidebarRail />
+      <div className="absolute bottom-4 left-4">
+        <ThemeModeToggle />
+      </div>
     </Sidebar>
   )
 }
