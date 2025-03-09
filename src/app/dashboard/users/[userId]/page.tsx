@@ -11,7 +11,6 @@ import {
 import { Avatar, AvatarFallback } from '@/src/components/ui/avatar'
 import { type User, getUserById } from '../../../actions/user'
 import DashboardBreadcrumbs from '../../breadcrumbs'
-import { Skeleton } from '@/src/components/ui/skeleton'
 import { Button } from '@/src/components/ui/button'
 import { ArrowLeft } from 'lucide-react'
 import Link from 'next/link'
@@ -84,22 +83,6 @@ export default async function UserPage({
                 <Button variant="outline">
                   <p>Toggle Status</p>
                 </Button>
-              </div>
-              <div className="flex flex-col gap-2">
-                <Skeleton className="h-4 w-1/8" />
-                <Skeleton className="h-4 w-1/3" />
-              </div>
-              <div className="flex flex-col gap-2">
-                <Skeleton className="h-4 w-1/8" />
-                <Skeleton className="h-4 w-1/3" />
-              </div>
-              <div className="flex flex-col gap-2">
-                <Skeleton className="h-4 w-1/8" />
-                <Skeleton className="h-4 w-1/3" />
-              </div>
-              <div className="flex flex-col gap-2">
-                <Skeleton className="h-4 w-1/8" />
-                <Skeleton className="h-4 w-1/3" />
               </div>
             </div>
           </CardContent>
