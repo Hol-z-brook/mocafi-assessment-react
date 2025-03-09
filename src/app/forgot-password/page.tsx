@@ -25,7 +25,7 @@ export default function ForgotPasswordPage() {
     },
   })
 
-  const onSubmit = form.handleSubmit((data) => {
+  const onSubmit = form.handleSubmit(() => {
     toast.success('Password reset email sent')
   })
 

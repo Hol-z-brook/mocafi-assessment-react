@@ -31,7 +31,8 @@ export default function NotFound() {
           <CardHeader>
             <CardTitle className="text-xl">404 - Not Found</CardTitle>
             <CardDescription>
-              The page you're looking for doesn't exist or has been moved.
+              The page you&apos;re looking for doesn&apos;t exist or has been
+              moved.
             </CardDescription>
           </CardHeader>
         </Card>
