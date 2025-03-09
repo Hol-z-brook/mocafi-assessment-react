@@ -19,13 +19,15 @@ import { notFound } from 'next/navigation'
 export default async function UserPage({
   params,
 }: {
-  params: { userId: string }
+  params: Promise<{ userId: string }>
 }) {
-  if (!params) {
+  const resolvedParams = await params
+
+  if (!resolvedParams) {
     notFound()
   }
 
-  const userId = Number(params.userId)
+  const userId = Number(resolvedParams.userId)
 
   if (isNaN(userId) || userId < 1) {
     notFound()

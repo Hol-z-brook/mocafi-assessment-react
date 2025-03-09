@@ -1,5 +1,3 @@
-'use client'
-
 import {
   Table,
   TableBody,
@@ -10,32 +8,32 @@ import {
 } from '@/src/components/ui/table'
 import { Badge } from '@/src/components/ui/badge'
 import { getUsers } from '@/src/app/actions/users'
-import { useEffect, useState } from 'react'
-import { User } from '@/src/data/goRestApi/model/user/User.model'
 import DashboardBreadcrumbs from '../breadcrumbs'
 import { BreadcrumbPage } from '@/src/components/ui/breadcrumb'
 import Link from 'next/link'
 import { Button } from '@/src/components/ui/button'
 import { Plus, ArrowLeft } from 'lucide-react'
-import { usePathname, useSearchParams } from 'next/navigation'
+import { Metadata } from 'next'
 
-export default function UsersPage() {
-  const [users, setUsers] = useState<User[]>([])
-  const pathname = usePathname()
-  const searchParams = useSearchParams()
-
-  const fetchUsers = async () => {
-    const data = await getUsers({
-      page: 1,
-      perPage: 10,
-    })
-    setUsers(data)
+export async function generateMetadata(): Promise<Metadata> {
+  return {
+    title: 'Users - Dashboard',
   }
+}
 
-  // Fetch users when the component mounts or when the URL changes
-  useEffect(() => {
-    fetchUsers()
-  }, [pathname, searchParams])
+type Props = {
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>
+}
+
+export default async function UsersPage({ searchParams }: Props) {
+  const resolvedParams = await searchParams
+  const page = Number(resolvedParams?.page) || 1
+  const perPage = Number(resolvedParams?.perPage) || 10
+
+  const users = await getUsers({
+    page,
+    perPage,
+  })
 
   return (
     <>
