@@ -9,12 +9,14 @@ import {
   CardTitle,
 } from '@/src/components/ui/card'
 import { Avatar, AvatarFallback } from '@/src/components/ui/avatar'
-import { type User, getUserById } from '../../../actions/user'
-import DashboardBreadcrumbs from '../../breadcrumbs'
 import { Button } from '@/src/components/ui/button'
 import { ArrowLeft } from 'lucide-react'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
+import { getUserById } from '@/src/app/actions/users'
+import { type User } from '@/src/data'
+import DashboardBreadcrumbs from '../../breadcrumbs'
+import { DeleteUserDialog } from './delete-user-dialog'
 
 export default async function UserPage({
   params,
@@ -54,7 +56,10 @@ export default async function UserPage({
               <span className="sr-only">Go back</span>
             </Link>
           </Button>
-          <h1 className="text-2xl font-semibold">User Details</h1>
+          <div className="flex items-center justify-between flex-1">
+            <h1 className="text-2xl font-semibold">User Details</h1>
+            <DeleteUserDialog userId={user.id} userName={user.name} />
+          </div>
         </div>
 
         <Card className="max-w-4xl">

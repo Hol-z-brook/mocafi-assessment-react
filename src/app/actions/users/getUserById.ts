@@ -2,17 +2,13 @@
 
 import {
   getUserById as _getUserById,
-  type User,
   type GetUserByIdProps,
+  type User,
 } from '@/src/data'
-import { notFound } from 'next/navigation'
 
-export async function getUserById(props: GetUserByIdProps): Promise<User> {
+export async function getUserById(
+  props: GetUserByIdProps
+): Promise<User | undefined> {
   const user = await _getUserById(props)
-
-  if (!user) {
-    notFound()
-  }
-
   return user
 }

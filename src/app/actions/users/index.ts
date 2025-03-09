@@ -1,4 +1,5 @@
 export { createUser } from './createUser'
+export { deleteUserById } from './deleteUserById'
 export { getUserById } from './getUserById'
 export { getUsers } from './getUsers'
-export { deleteUserById } from './deleteUserById'
+export { updateUserById } from './updateUserById'
