@@ -6,8 +6,14 @@ export interface GetUserByIdProps {
   id: number
 }
 
-export async function getUserById({ id }: GetUserByIdProps): Promise<User> {
-  const user: User = await goRestApi.get(apiConfig, `/public/v2/users/${id}`)
-
-  return user
+export async function getUserById({
+  id,
+}: GetUserByIdProps): Promise<User | undefined> {
+  try {
+    const user: User = await goRestApi.get(apiConfig, `/public/v2/users/${id}`)
+    return user
+  } catch (error) {
+    console.error('Error fetching user by ID:', error)
+    return undefined
+  }
 }
