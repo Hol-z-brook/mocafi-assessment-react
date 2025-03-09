@@ -17,17 +17,15 @@ import Link from 'next/link'
 import { notFound } from 'next/navigation'
 
 export default async function UserPage({
-  params: _params,
+  params,
 }: {
   params: { userId: string }
 }) {
-  const params = await Promise.resolve(_params)
-
   if (!params) {
     notFound()
   }
 
-  const userId = Number(params?.userId)
+  const userId = Number(params.userId)
 
   if (isNaN(userId) || userId < 1) {
     notFound()
