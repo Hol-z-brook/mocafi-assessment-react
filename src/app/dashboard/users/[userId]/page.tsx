@@ -1,3 +1,5 @@
+'use server'
+
 import { BreadcrumbItem } from '@/src/components/ui/breadcrumb'
 import {
   Card,
@@ -16,12 +18,24 @@ import Link from 'next/link'
 import { notFound } from 'next/navigation'
 
 export default async function UserPage({
-  params,
+  params: _params,
 }: {
   params: { userId: string }
 }) {
+  const params = await Promise.resolve(_params)
+
+  if (!params) {
+    notFound()
+  }
+
+  const userId = Number(params?.userId)
+
+  if (isNaN(userId) || userId < 1) {
+    notFound()
+  }
+
   const user: User | undefined = await getUserById({
-    id: Number(params.userId),
+    id: userId,
   })
 
   if (!user) {
