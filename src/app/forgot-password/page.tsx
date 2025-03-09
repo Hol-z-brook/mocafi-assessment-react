@@ -16,6 +16,7 @@ import { Input } from '@/src/components/ui/input'
 import { Button } from '@/src/components/ui/button'
 import { AuthLayout } from '@/src/components/ui/auth/auth-layout'
 import { toast } from 'sonner'
+
 export default function ForgotPasswordPage() {
   const form = useForm({
     resolver: zodResolver(z.object({ email: z.string().email() })),
