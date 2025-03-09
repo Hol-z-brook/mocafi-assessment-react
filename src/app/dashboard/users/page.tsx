@@ -14,6 +14,7 @@ import Link from 'next/link'
 import { Button } from '@/src/components/ui/button'
 import { Plus, ArrowLeft } from 'lucide-react'
 import { Metadata } from 'next'
+import { Pagination } from '@/src/components/ui/pagination'
 
 export async function generateMetadata(): Promise<Metadata> {
   return {
@@ -34,6 +35,10 @@ export default async function UsersPage({ searchParams }: Props) {
     page,
     perPage,
   })
+
+  // Since we don't have a total count from the API, we'll use the current page results
+  // to determine if there might be more pages
+  const hasMore = users.length === perPage
 
   return (
     <>
@@ -59,42 +64,61 @@ export default async function UsersPage({ searchParams }: Props) {
           </div>
         </div>
 
-        <Table>
-          <TableHeader>
-            <TableRow>
-              <TableHead>Name</TableHead>
-              <TableHead>Email</TableHead>
-              <TableHead>Gender</TableHead>
-              <TableHead>Status</TableHead>
-            </TableRow>
-          </TableHeader>
-          <TableBody>
-            {users.map((user) => (
-              <TableRow
-                key={user.id}
-                className="hover:bg-muted/50 transition-colors"
-              >
-                <TableCell>
-                  <Link
-                    href={`/dashboard/users/${user.id}`}
-                    className="block hover:underline"
-                  >
-                    {user.name}
-                  </Link>
-                </TableCell>
-                <TableCell>{user.email}</TableCell>
-                <TableCell>{user.gender}</TableCell>
-                <TableCell>
-                  <Badge
-                    variant={user.status === 'active' ? 'default' : 'secondary'}
-                  >
-                    {user.status}
-                  </Badge>
-                </TableCell>
+        <div className="space-y-4">
+          <Table>
+            <TableHeader>
+              <TableRow>
+                <TableHead>Name</TableHead>
+                <TableHead>Email</TableHead>
+                <TableHead>Gender</TableHead>
+                <TableHead>Status</TableHead>
               </TableRow>
-            ))}
-          </TableBody>
-        </Table>
+            </TableHeader>
+            <TableBody>
+              {users.length === 0 ? (
+                <TableRow>
+                  <TableCell colSpan={4} className="text-center h-24">
+                    No users found
+                  </TableCell>
+                </TableRow>
+              ) : (
+                users.map((user) => (
+                  <TableRow
+                    key={user.id}
+                    className="hover:bg-muted/50 transition-colors"
+                  >
+                    <TableCell>
+                      <Link
+                        href={`/dashboard/users/${user.id}`}
+                        className="block hover:underline"
+                      >
+                        {user.name}
+                      </Link>
+                    </TableCell>
+                    <TableCell>{user.email}</TableCell>
+                    <TableCell>{user.gender}</TableCell>
+                    <TableCell>
+                      <Badge
+                        variant={
+                          user.status === 'active' ? 'default' : 'secondary'
+                        }
+                      >
+                        {user.status}
+                      </Badge>
+                    </TableCell>
+                  </TableRow>
+                ))
+              )}
+            </TableBody>
+          </Table>
+
+          <Pagination
+            currentPage={page}
+            pageSize={perPage}
+            hasMore={hasMore}
+            className="mt-4"
+          />
+        </div>
       </div>
     </>
   )
