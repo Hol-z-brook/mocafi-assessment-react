@@ -1,4 +1,4 @@
-import { type CreateUserSchema } from '@/src/data/model/user/User.schema'
+import { type CreateUserSchema } from '@/src/data/goRestApi/model/user/CreateUser.schema'
 
 const firstNames = [
   'Emma',

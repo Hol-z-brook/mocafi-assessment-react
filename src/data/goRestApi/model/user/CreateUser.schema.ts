@@ -6,6 +6,7 @@ export const createUserSchema = z.object({
     required_error: 'Please select a gender',
   }),
   email: z.string().min(1, 'Email is required').email('Invalid email address'),
+  status: z.optional(z.enum(['active', 'inactive'])),
 })
 
 export type CreateUserSchema = z.infer<typeof createUserSchema>

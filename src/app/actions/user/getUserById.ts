@@ -7,5 +7,6 @@ import {
 } from '@/src/data'
 
 export async function getUserById(props: GetUserByIdProps): Promise<User> {
-  return _getUserById(props)
+  const user = await _getUserById(props)
+  return user
 }

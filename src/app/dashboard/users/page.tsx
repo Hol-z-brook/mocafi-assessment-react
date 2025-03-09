@@ -11,17 +11,16 @@ import {
 import { Badge } from '@/src/components/ui/badge'
 import { getUsers } from '@/src/app/actions/users'
 import { useEffect, useState } from 'react'
-import { User } from '@/src/data/model/user/User.model'
+import { User } from '@/src/data/goRestApi/model/user/User.model'
 import DashboardBreadcrumbs from '../breadcrumbs'
 import { BreadcrumbPage } from '@/src/components/ui/breadcrumb'
 import Link from 'next/link'
 import { Button } from '@/src/components/ui/button'
 import { Plus, ArrowLeft } from 'lucide-react'
-import { useRouter, usePathname, useSearchParams } from 'next/navigation'
+import { usePathname, useSearchParams } from 'next/navigation'
 
 export default function UsersPage() {
   const [users, setUsers] = useState<User[]>([])
-  const router = useRouter()
   const pathname = usePathname()
   const searchParams = useSearchParams()
 

@@ -14,10 +14,14 @@ import { Button } from '@/src/components/ui/button'
 import { ArrowLeft } from 'lucide-react'
 import Link from 'next/link'
 
-const sampleUserId = 7752433
-
-export default async function UserPage() {
-  const user: User | undefined = await getUserById({ id: sampleUserId })
+export default async function UserPage({
+  params,
+}: {
+  params: { userId: string }
+}) {
+  const user: User | undefined = await getUserById({
+    id: Number(params.userId),
+  })
 
   return (
     <>

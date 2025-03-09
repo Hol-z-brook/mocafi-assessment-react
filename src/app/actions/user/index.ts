@@ -1,4 +1,4 @@
-export { type User } from '../../../data/model/user/User.model'
+export { type User } from '../../../data/goRestApi/model/user/User.model'
 export { getActiveUser } from './getActiveUser'
 export { getUserById } from './getUserById'
 export { login } from './login'

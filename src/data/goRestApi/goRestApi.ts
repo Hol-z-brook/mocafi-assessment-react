@@ -1,8 +1,11 @@
-import { ApiConfig } from './ApiConfig'
+import { ApiConfig } from '../ApiConfig'
 
 export const goRestApi = {
   get: async (config: ApiConfig, path: string) => {
-    const res = await fetch(`${config.origin}${path}`, {
+    const url = `${config.origin}${path}`
+
+    const res = await fetch(url, {
+      method: 'GET',
       headers: config.headers,
     })
 

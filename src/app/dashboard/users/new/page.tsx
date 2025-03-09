@@ -17,9 +17,9 @@ import Link from 'next/link'
 import {
   createUserSchema,
   type CreateUserSchema,
-} from '@/src/data/model/user/User.schema'
+} from '@/src/data/goRestApi/model/user/CreateUser.schema'
 import { createUser } from '@/src/app/actions/users/createUser'
-import { generateRandomUser } from '@/src/utils/demo-data'
+import { generateRandomUser } from '@/src/data/goRestApi/model/user/dev/generateRandomUser'
 import {
   Card,
   CardContent,
