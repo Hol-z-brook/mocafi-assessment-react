@@ -20,7 +20,6 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/src/components/ui/select'
-import { useRouter } from 'next/navigation'
 
 interface UserCardProps {
   user: User
@@ -29,7 +28,6 @@ interface UserCardProps {
 export function UserCard({ user }: UserCardProps) {
   const [isEditing, setIsEditing] = useState(false)
 
-  const router = useRouter()
   const [formData, setFormData] = useState({
     name: user.name,
     gender: user.gender,
