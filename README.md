@@ -15,11 +15,13 @@ https://holzbrook-mocafi-assessment.netlify.app/
 [x] - Add sample data
 [ ] - Write a frontend web application enabling CRUD operations with users, using the Go REST online public API and user endpoints.
 [x] - / - home page, ignore for now
-[ ] - /account - display the current user
-[ ] - /users - display a list of users
-[ ] - /users/[id] - display a specific user
+[x] - /users - display a list of users
+[ ] - /users?page=2
+[x] - /users/[id] - display a specific user
 [ ] - /users/[id]/delete - a separate page to delete the user
-[ ] - Implement Form validations
-[ ] - Add API integration
-[ ] - Login interface using hardcoded credentials
-[ ] - /login - a dedicated login page
+[x] - Implement Form validations
+[x] - Add API integration
+[x] - Login interface using hardcoded credentials
+[x] - /login - a dedicated login page
+[x] - /signup - a dedicated signup page
+[x] - /forgot-password - a dedicated password reset page
