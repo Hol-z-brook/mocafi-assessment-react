@@ -23,7 +23,10 @@ https://holzbrook-mocafi-assessment.netlify.app/
   - [x] User listing and navigation
     - [x] `/` - Home page
     - [x] `/users` - Display list of users
-    - [ ] Add pagination support (`/users?page=N`)
+    - [x] Add pagination support (`/users?page=N`)
     - [x] `/users/[id]` - Display specific user details
+      - [x] - Display user details in a card
+      - [x] - Allow user deletion
+      - [x] - Update user details
   - [x] Form validations
   - [x] API integration
