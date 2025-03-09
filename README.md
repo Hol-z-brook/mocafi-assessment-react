@@ -10,6 +10,8 @@ This is an assessment for building a CRUD web app.
 
 https://holzbrook-mocafi-assessment.netlify.app/
 
+[![Netlify Status](https://api.netlify.com/api/v1/badges/be99b8e3-4b6d-4eea-93a3-e22258bb05bc/deploy-status)](https://app.netlify.com/sites/holzbrook-mocafi-assessment/deploys)
+
 ### Tasks
 
 [x] - Add sample data
